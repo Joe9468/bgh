@@ -15,8 +15,8 @@ function my_query($sql) {
 }
 
 $sql_host = '127.0.0.1';
-$sql_user = 'ericsimith';
-$sql_password = 'iloveyou';
+$sql_user = 'bgh';
+$sql_password = 'bgh';
 $sql_dbname = 'bgh';
 
 $link = mysql_connect($sql_host,$sql_user,$sql_password) 
