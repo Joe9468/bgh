@@ -1,0 +1,76 @@
+<!-- 内容 -->
+<div id='main' style="display: none;background-color: brown;">
+    <!--增加导航首页-->
+    <div id="header">
+        <div class="logo">
+            <a href="./" title="办公会系统">
+                <img src="./logo_cp.gif" alt="办公会系统" border="0">
+            </a>
+        </div>
+        <div class="nav_menu">
+            <div class="nav" id="menu_main">
+                <ul>
+                    <li id="dxkz">
+                        <a href="">大项开支</a>
+                    </li>
+                    <li id="yltj">
+                        <a href="">油料统计</a>
+                    </li>
+                    <li id="yljh">
+                        <a href="">油料计划</a>
+                    </li>
+                    <li id="clwx">
+                        <a href="">车辆维修</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav_user" id="welcome_user">
+                欢迎你： <a href="javascript:;" onclick="aconfirm('确认退出系统？','account.php?action=logout');"
+                    target="_top">[退出]</a>&nbsp;
+            </div>
+        </div>
+        <div class="topBanner">
+            <!-- <div class="user_search" style="padding:5px 0 0 0px; font-size:14px;">
+                            <form name="file_form" action="mydisk.php" method="get" onsubmit="return dosubmit(this);">
+                            <input type="hidden" name="item" value="files">
+                            <input type="hidden" name="menu" value="file">
+                            <input type="hidden" name="action" value="search">
+                            <i class="icon-search"></i>
+                            搜索：<input class="search_text" type="text" name="word" placeholder="搜你想要" value="" title="可按回车键快速搜索">
+                            <select class="search_type" name="srh_type">
+                            <option value="0" selected="">文件名</option>
+                            <option value="1">文件ID</option>
+                            <option value="2">目录名</option>
+                            <option value="3">目录ID</option>
+                            </select>
+                            <input type="submit" class="btn" value="搜索">
+                            </form>
+                        </div> -->
+
+        </div>
+    </div>
+    <div id="test">aaaaaaaaaaaaaaa</div>
+</div>
+
+
+
+
+
+<!-- 使用ajax -->
+<script>
+    document.querySelector('input').onclick = function () {
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', './src/account.php?username=' + this.value);
+        xhr.onload = function () {
+            console.log(xhr.responseText);
+            var str = document.getElementById('welcome_user').innerHTML;
+            document.getElementById("test").innerHTML = str;
+            str = str.replace("欢迎你：", xhr.responseText);
+            if (xhr.responseText !== "用户不存在，请重新输入") {
+                document.getElementById('login').style.display = 'none';
+                document.getElementById('main').style.display = 'inline';
+            }
+        }
+        xhr.send(null);
+    }
+</script>
