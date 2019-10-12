@@ -2,62 +2,146 @@
 
 <html>
 
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<link rel="shortcut icon" href="favicon.ico">
-		<title>办公会系统-登录</title>
-		<link rel="stylesheet" href="css/login.css" />
-        <link rel="stylesheet" href="css/layui.css" media="all" />
-        <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-	</head>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="shortcut icon" href="favicon.ico">
+	<title>办公会系统-登录</title>
+	<link rel="stylesheet" href="css/login.css" />
+	<link rel="stylesheet" href="css/layui.css" media="all" />
+	<script src="./js/jquery-1.12.4.min.js"> </script>
+	<script src="./js/md5.js"></script>
+</head>
 
-	<body class="beg-login-bg">
-		<div class="beg-login-box">
-			<header>
-				<h1>办公会系统登录</h1>
-			</header>
-			<div class="beg-login-main">
-                <!-- <form action="/manage/login" class="layui-form" method="post"> -->
-                <form class="layui-form" method="post">
-                <div class="layui-form-item">
-						<label class="beg-login-icon">
-                        <i class="layui-icon">&#xe612;</i>
-                    </label>
-						<input type="text" name="userName" lay-verify="userName" autocomplete="off" placeholder="这里输入登录名" class="layui-input">
+<body class="beg-login-bg">
+	<div class="beg-login-box">
+		<header>
+			<h1>办公会系统登录</h1>
+		</header>
+		<div class="beg-login-main">
+			<form class="layui-form" method="POST">
+				<div class="layui-form-item">
+					<label class="beg-login-icon">
+						<i class="layui-icon">&#xe612;</i>
+					</label>
+					<input type="text" id="username" autocomplete="off" placeholder="这里输入登录名" class="layui-input">
+				</div>
+				<div class="layui-form-item">
+					<label class="beg-login-icon">
+						<i class="layui-icon">&#xe642;</i>
+					</label>
+					<input type="password" id="password" autocomplete="off" placeholder="这里输入密码" class="layui-input">
+				</div>
+				<div class="layui-form-item">
+					<div class="beg-pull-left beg-login-remember">
+						<label>一周登录有效</label>
+						<input type="checkbox" value="RememberMe" title="一周登录有效">
 					</div>
-					<div class="layui-form-item">
-						<label class="beg-login-icon">
-							<i class="layui-icon">&#xe642;</i>
-						</label>
-						<input type="password" name="password" lay-verify="password" autocomplete="off" placeholder="这里输入密码" class="layui-input">
+					<div class="beg-pull-right">
+						<button class="layui-btn layui-btn-primary" lay-submit lay-filter="login">
+							<i class="layui-icon">&#xe650;</i> 登录
+						</button>
 					</div>
-					<div class="layui-form-item">
-						<div class="beg-pull-left beg-login-remember">
-							<label>记住帐号？</label>
-							<input type="checkbox" name="rememberMe" value="true" lay-skin="switch" checked title="记住帐号">
-						</div>
-						<div class="beg-pull-right">
-							<button class="layui-btn layui-btn-primary" lay-submit lay-filter="login">
-                            <i class="layui-icon">&#xe650;</i> 登录
-                        </button>
-						</div>
-						<div class="beg-clear"></div>
-					</div>
-				</form>
-			</div>
-			<footer>
-				<p>办公会系统帮助你快速管理办公会信息</p>
-				<p>EricSimith Telephone：18304900713</p>
-			</footer>
+					<div class="beg-clear"></div>
+				</div>
+			</form>
 		</div>
-        <script>
-            // $("form").attr('action','/manage/login') = function (data) {
-            //     var httpRequest = new XMLHttpRequest();
-            //     httpRequest.onreadystatechange
-            // }
-        </script>
-	</body>
+		<footer>
+			<p id="text_int"></p>
+			<p>办公会系统帮助你快速管理办公会信息</p>
+			<p>EricSimith Telephone：18304900713</p>
+		</footer>
+	</div>
+	<script>
+		// input失去焦点恢复样式
+		$(".layui-form-item input").change(function () {
+			$(this).css({
+				"border-color": "white",
+				"outline": "none",
+				"background-color": "white"
+			});
+		});
+		// form提交
+		$("form").submit(function () {
+			event.preventDefault();
+			// 检测username是否为空
+			if ($("#username").val().length == 0) {
+				$("#username").css({
+					"border-color": "red",
+					"outline": "1px",
+					"background-color": "pink"
+				});
+				$("#username").attr({
+					"placeholder": "用户名不能为空"
+				});
+				return null;
+			}
+			// 检测password是否为空
+			if ($("#password").val().length == 0) {
+				$("#password").css({
+					"border-color": "red",
+					"outline": "1px",
+					"background-color": "pink"
+				});
+				$("#password").attr({
+					"placeholder": "密码不能为空"
+				});
+				return null;
+			}
+			$.post("./src/login.php", {
+				username: $("#username").val(),
+				password: hex_md5($("#password").val()),
+				remember: $(':checkbox:checked').val() ? "remember" : "n"
+			}, function (data, stats) {
+				console.log(data + "|" + stats);
+				if (stats = "success") {
+					switch (data) {
+						case "not_has_the_user":
+							$("#username").css({
+								"border-color": "red",
+								"outline": "1px",
+								"background-color": "pink"
+							});
+							$("#username").val("");
+							$("#password").val("");
+							$("#username").attr({
+								"placeholder": "用户名不存在"
+							});
+							break;
+						case "user_is_lock":
+							$("#username").css({
+								"border-color": "red",
+								"outline": "1px",
+								"background-color": "pink"
+							});
+							$("#username").val("");
+							$("#password").val("");
+							$("#username").attr({
+								"placeholder": "用户名被锁定，请联系管理员"
+							});
+							break;
+						case "password_is_wrong":
+							$("#password").css({
+								"border-color": "red",
+								"outline": "1px",
+								"background-color": "pink"
+							});
+							$("#username").val("");
+							$("#password").val("");
+							$("#username").attr({
+								"placeholder": "密码不正确"
+							});
+							break;
+						case "login_sussed":
+							$(location).attr('href', './temp.html');
+							break;
+					}
+					return null;
+				}
+			});
+		});
+	</script>
+</body>
 
 </html>

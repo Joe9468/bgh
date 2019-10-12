@@ -33,24 +33,12 @@ a{color:#333}a:hover{color:#777}a cite{*cursor:pointer}
 
 .layui-icon{font-family:layui-icon!important;font-size:16px;font-style:normal;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .layui-btn .layui-icon{font-size:18px;vertical-align:bottom}
-.layui-layedit-tool .layedit-tool-mid,.layui-layedit-tool .layui-icon{display:inline-block;vertical-align:middle;text-align:center;font-size:14px}
-.layui-layedit-tool .layui-icon{position:relative;width:32px;height:30px;line-height:30px;margin:3px 5px;color:#777;cursor:pointer;border-radius:2px}
-.layui-layedit-tool .layui-icon:hover{color:#393D49}
-.layui-tab-bar .layui-icon{position:relative;display:inline-block;top:3px;transition:all .3s;-webkit-transition:all .3s}
-.layui-tab-more .layui-tab-bar .layui-icon{top:-2px;top:3px\9;-webkit-transform:rotate(180deg);transform:rotate(180deg)}
-:root .layui-tab-more .layui-tab-bar .layui-icon{top:-2px\0/IE9}
-.layui-layedit-tool .layui-icon:active{color:#000}
 
 .layui-btn,.layui-input,.layui-select,.layui-textarea,.layui-upload-button{outline:0;-webkit-transition:border-color .3s cubic-bezier(.65,.05,.35,.5);transition:border-color .3s cubic-bezier(.65,.05,.35,.5);-webkit-box-sizing:border-box!important;-moz-box-sizing:border-box!important;box-sizing:border-box!important}
 .layui-input,.layui-select,.layui-textarea{height:38px;line-height:38px;line-height:36px\9;border:1px solid #e6e6e6;background-color:#fff;border-radius:2px}
 .layui-input,.layui-textarea{display:block;width:100%;padding-left:10px}
 .layui-input:hover,.layui-textarea:hover{border-color:#D2D2D2!important}
 .layui-input:focus,.layui-textarea:focus{border-color:#C9C9C9!important}
-.layui-form-danger+.layui-form-select .layui-input,.layui-form-danger:focus{border:1px solid #FF5722!important}
-.layui-form-select{position:relative}.layui-form-select .layui-input{padding-right:30px;cursor:pointer}
-.layui-form-pane .layui-input{border-radius:0 2px 2px 0}
-.layui-form-pane .layui-input:hover,.layui-form-pane .layui-textarea:hover{border-color:#e6e6e6!important}
-.layui-form-pane .layui-input:focus,.layui-form-pane .layui-textarea:focus{border-color:#e6e6e6!important}
 
 .layui-btn,.layui-inline,img{vertical-align:middle}
 .layui-btn,.layui-unselect{-webkit-user-select:none;-ms-user-select:none;-moz-user-select:none}
