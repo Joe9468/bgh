@@ -28,12 +28,11 @@ try {
     $db1 = new PDO($db1_dsn, $db1_user, $db1_password);
     //$db2_ys = new PDO($db2_dbm . ":host=" . $db2_host . ";dbname=" . $db2_dbname_ys, $db2_user, $db2_password);
     //$db2_kjzw = new PDO($db2_dbm . ":host=" . $db2_host . ";dbname=" . $db2_dbname_kjzw, $db2_user, $db2_password);
-    
+
     $db1->query("set names utf8");
     //$db2_ys->query("set names utf8");
     //$db2_kjzw->query("set names utf8");
 } catch (PDOException $e) {
-    throw new MyDatabaseException( $e->getMessage( ) , (int)$e->getCode( ) );
+    throw new MyDatabaseException($e->getMessage(), (int) $e->getCode());
     echo "<br>数据库链接失败<br>";
 }
-
