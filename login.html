@@ -10,7 +10,7 @@
 	<title>办公会系统-登录</title>
 	<link rel="stylesheet" href="css/login.css" />
 	<link rel="stylesheet" href="css/layui.css" media="all" />
-	<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"> </script>
 </head>
 
 <body class="beg-login-bg">
@@ -19,25 +19,24 @@
 			<h1>办公会系统登录</h1>
 		</header>
 		<div class="beg-login-main">
-			<form class="layui-form" method="post">
+			<form class="layui-form" method="POST">
 				<div class="layui-form-item">
 					<label class="beg-login-icon">
 						<i class="layui-icon">&#xe612;</i>
 					</label>
-					<input type="text" name="userName" id="username" lay-verify="userName" autocomplete="off" placeholder="这里输入登录名"
-						class="layui-input">
+					<input type="text" id="username" autocomplete="off" placeholder="这里输入登录名" class="layui-input">
 				</div>
 				<div class="layui-form-item">
 					<label class="beg-login-icon">
 						<i class="layui-icon">&#xe642;</i>
 					</label>
-					<input type="password" name="password" id="password" lay-verify="password" autocomplete="off" placeholder="这里输入密码"
-						class="layui-input" disabled="disabled">
+					<input type="password" id="password" autocomplete="off" placeholder="这里输入密码" class="layui-input"
+						disabled="disabled">
 				</div>
 				<div class="layui-form-item">
 					<div class="beg-pull-left beg-login-remember">
-						<label>记住帐号？</label>
-						<input type="checkbox" name="rememberMe" value="true" lay-skin="switch" checked title="记住帐号">
+						<label>一周登录有效</label>
+						<input type="checkbox" value="RememberMe" checked title="一周登录有效">
 					</div>
 					<div class="beg-pull-right">
 						<button class="layui-btn layui-btn-primary" lay-submit lay-filter="login">
@@ -54,39 +53,36 @@
 			<p>EricSimith Telephone：18304900713</p>
 		</footer>
 	</div>
-	<script src="js/ajax.js"></script>
 	<script>
-		// function login(){
-        // 	var username = document.getElementById("username");
-        // 	var password = document.getElementById("password");
-        // 	if(trim(username.value)==null || trim(username.value)==""){
-        // 	    username.style.backgroundColor = "red";
-        // 	    username.focus();
-        // 	    return false;
-        // 	}
-        // 	// if(trim(password.value)==null || trim(password.value)==""){
-        // 	//     alert("请输入密码");
-        // 	//     password.focus();
-        // 	//     return false;
-        // 	// }
-        // 	return true;
-		// }
-		// function trim(str){ //删除左右两端的空格
-		// 　　     return str.replace(/(^\s*)|(\s*$)/g, "");
-		// }
-		// var xhr = GetXmlHttpObject();
+		// input失去焦点恢复样式
+		$(".layui-form-item input").change(function () {
+			$(this).css({ "border-color": "white", "outline": "none" ,"background-color":"white" });
+		});
+		// form提交
+		$("form").submit(function () {
+			event.preventDefault();
+			// 检测username是否为空
+			if ($("#username").val().length == 0) {
+				$("#username").css({ "border-color": "red", "outline": "1px" ,"background-color":"pink"});
+				$("#username").attr({ "placeholder": "用户名不能为空" });
+				return null;
+			}
+			// 检测password是否为空
+			// if ($("#password").val().length == 0) {
+			// 	$("#password").css({ "border-color": "red", "outline": "1px" ,"background-color":"pink"});
+			// 	$("#password").attr({ "placeholder": "用户名不能为空" });
+			// 	return null;
+			// }
+			$.post("./src/login.php", {
+				username: $("#username").val(),
+				password: $("#password").val(),
+				rememberMe: $(':checkbox:checked').val()?"rememberme":"noremember"
+			}, function (data, stats) {
+				console.log(data + "|" + stats);
+			});
+		});
 		$(document).ready(function () {
-			$("button").click(function () {
-				$.post("src/login.php",{
-					username:$("#username").value,
-					password:$("#password").value
-				},
-				function(data,status){
-    				alert("Data: " + data + "\nStatus: " + status);
-				})
-			})
-		})
-
+		});
 	</script>
 </body>
 
