@@ -10,7 +10,8 @@
 	<title>办公会系统-登录</title>
 	<link rel="stylesheet" href="css/login.css" />
 	<link rel="stylesheet" href="css/layui.css" media="all" />
-	<script src="https://code.jquery.com/jquery-1.12.4.min.js"> </script>
+	<script src="./js/jquery-1.12.4.min.js"> </script>
+	<script src="./js/md5.js"></script>
 </head>
 
 <body class="beg-login-bg">
@@ -30,13 +31,12 @@
 					<label class="beg-login-icon">
 						<i class="layui-icon">&#xe642;</i>
 					</label>
-					<input type="password" id="password" autocomplete="off" placeholder="这里输入密码" class="layui-input"
-						disabled="disabled">
+					<input type="password" id="password" autocomplete="off" placeholder="这里输入密码" class="layui-input">
 				</div>
 				<div class="layui-form-item">
 					<div class="beg-pull-left beg-login-remember">
 						<label>一周登录有效</label>
-						<input type="checkbox" value="RememberMe" checked title="一周登录有效">
+						<input type="checkbox" value="RememberMe" title="一周登录有效">
 					</div>
 					<div class="beg-pull-right">
 						<button class="layui-btn layui-btn-primary" lay-submit lay-filter="login">
@@ -68,20 +68,44 @@
 				return null;
 			}
 			// 检测password是否为空
-			// if ($("#password").val().length == 0) {
-			// 	$("#password").css({ "border-color": "red", "outline": "1px" ,"background-color":"pink"});
-			// 	$("#password").attr({ "placeholder": "用户名不能为空" });
-			// 	return null;
-			// }
+			if ($("#password").val().length == 0) {
+				$("#password").css({ "border-color": "red", "outline": "1px" ,"background-color":"pink"});
+				$("#password").attr({ "placeholder": "密码不能为空" });
+				return null;
+			}
 			$.post("./src/login.php", {
 				username: $("#username").val(),
-				password: $("#password").val(),
-				rememberMe: $(':checkbox:checked').val()?"rememberme":"noremember"
+				password: hex_md5($("#password").val()),
+				remember: $(':checkbox:checked').val()?"remember":"n"
 			}, function (data, stats) {
 				console.log(data + "|" + stats);
+				if (stats = "success") {
+					switch (data) {
+						case "not_has_the_user":
+						$("#username").css({ "border-color": "red", "outline": "1px" ,"background-color":"pink"});
+						$("#username").val("");
+						$("#password").val("");
+						$("#username").attr({ "placeholder": "用户名不存在" });
+							break;
+						case "user_is_lock":
+						$("#username").css({ "border-color": "red", "outline": "1px" ,"background-color":"pink"});
+						$("#username").val("");
+						$("#password").val("");
+						$("#username").attr({ "placeholder": "用户名被锁定，请联系管理员" });
+							break;
+						case "password_is_wrong":
+						$("#password").css({ "border-color": "red", "outline": "1px" ,"background-color":"pink"});
+						$("#username").val("");
+						$("#password").val("");
+						$("#username").attr({ "placeholder": "密码不正确" });
+							break;
+						case "login_sussed":
+						$(location).attr('href', './temp.html');
+							break;
+					}
+					return null;
+				}
 			});
-		});
-		$(document).ready(function () {
 		});
 	</script>
 </body>

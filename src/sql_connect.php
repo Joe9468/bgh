@@ -22,7 +22,7 @@ $db2_ys = null;
 $db2_kjzw = null;
 
 $db1_dsn = "$db1_dbm:host=$db1_host;dbname=$db1_dbname";
-echo  $db1_dsn;
+
 // 连接数据库
 try {
     $db1 = new PDO($db1_dsn, $db1_user, $db1_password);
