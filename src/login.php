@@ -1,4 +1,23 @@
 <?php
+
+if (empty($_POST) && $_GET["action"] == "logout") {
+    echo "user_has_logout";
+    $_SESSION = array();
+    if (ini_get("session.use_cookies")) {
+        $params = session_get_cookie_params();
+        setcookie(
+            session_name(),
+            '',
+            time() - 42000,
+            $params["path"],
+            $params["domain"],
+            $params["secure"],
+            $params["httponly"]
+        );
+    }
+    exit;
+}
+
 include_once 'sql_connect.php';
 
 $sql = " SELECT * FROM `tb_users` WHERE `username` =  '" . $_POST["username"]  . "'";

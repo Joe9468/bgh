@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>办公会系统</title>
+    <!-- <link rel="stylesheet" href="css/login.css" />
+    <link rel="stylesheet" href="css/layui.css" media="all" /> -->
+    <script src="./js/jquery-1.12.4.min.js"> </script>
+</head>
+
+<body>
+    <script>
+        // 检测用户是否登录过
+        $(document).ready(function () {
+            // logout退出
+            $("#logout").click(function () {
+                $.get("src/login.php?action=logout", function (data, state) {
+                    console.log(data + '|' + state);
+                    if (state != "success") {
+                        $(location).attr('href', 'error.html');
+                    }
+                    if (data == "user_has_logout") {
+                        $(location).attr('href', 'login.html');
+                    }
+                });
+            });
+        });
+    </script>
+
+    你好，你已经登录成功了<br>
+    <p>kkkkkkkkkk</p>
+    <button id="logout">点击登出</button>
+
+
+</body>
+
+</html>
