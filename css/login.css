@@ -1,5 +1,5 @@
 .beg-login-bg {
-	/* background: url(../Images/login-bg-1.jpg) no-repeat center center fixed; */
+	/* background: url(Images/login-bg.jpg) no-repeat center center fixed; */
 	background-color: #393D49;
 }
 
@@ -51,8 +51,6 @@
 
 .beg-login-box footer p {
 	line-height: 17px;
-	/* line-height: 35px; */
-	/* 原值为单行35px */
 	text-align: center;
 }
 
