@@ -2,73 +2,180 @@
 
 <html>
 
-<head>
+<head lang="zh-cn">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="shortcut icon" href="favicon.ico">
     <title>办公会系统</title>
-    <!-- <link rel="stylesheet" href="css/login.css" /> -->
-    <!-- <link rel="stylesheet" href="css/layui.css" media="all" /> -->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="./bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="./js/md5.js"></script>
     <script src="./js/jquery-1.12.4.min.js"> </script>
+    <script src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            padding-top: 50px;
+        }
+
+        .starter {
+            padding: 40px 15px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
-    <!-- 头部 -->
-    <div class="header">
-        <div class="logo_box">
-            <span style="font-size: 22px;">CFJFQ办公会系统</span>
+    <!-- 导航 -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">办公会系统</a>
+            </div>
+
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav" id="my_tab">
+                    <li class="active"><a href="main.html">主页</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li id="login"><a href="#">登录</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                                class="glyphicon glyphicon-align-justify"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">权限申请</a> </li>
+                            <li id="change_ps"><a href="#">修改密码</a> </li>
+                            <li id="logout"><a href="#">退　　出</a> </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="user_box">
-            <span id="username">用户名称</span>
-            <button id="logout">点击登出</button>
+    </nav>
+
+    <!-- 内容 -->
+    <div class="container">
+        <div class="starter">
+            <h1>C</h1>
+            <p class="lead">hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello
+            </p>
         </div>
     </div>
-    <!-- 左边栏 -->
-    <div class="left_side">
 
-    </div>
-    <!-- 主干 -->
-    <div class="body">
-
-    </div>
-    <!-- 脚线 -->
-    <div class="footer">
-        <p>你好，你已经登录成功了</p>
-        <p>你好，你已经登录成功了</p>
-        <p>你好，你已经登录成功了</p>
-        <p>你好，你已经登录成功了</p>
-        <p>你好，你已经登录成功了</p>
-        <p>你好，你已经登录成功了</p>
-        <p>你好，你已经登录成功了</p>
-        <p>你好，你已经登录成功了</p>
-        <p>你好，你已经登录成功了</p>
-        <p>你好，你已经登录成功了</p>
-        <p>你好，你已经登录成功了</p>
-        <p>你好，你已经登录成功了</p>
-        <p>你好，你已经登录成功了</p>
-        <p>你好，你已经登录成功了</p>
-
+   <!--change_ps_box Modal -->
+   <div class="modal fade" id="change_ps_box" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> 
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="CPModalLabel">更改密码</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="now_password" class="control-label">现有密码:</label>
+                            <input type="password" class="form-control" id="now_password" autocomplete="off">
+                            <div class="alert alert-danger" role="alert" hidden>密码不正确</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="new_password" class="control-label">新的密码:</label>
+                            <input type="password" class="form-control" id="new_password" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="re_new_password" class="control-label">重复密码:</label>
+                            <input type="password" class="form-control" id="re_new_password" autocomplete="off">
+                            <div class="alert alert-danger" role="alert" hidden>密码不一致</div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary">更改密码</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <!--login_box Modal -->
+    <div class="modal fade" id="login_box" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="LoginModalLabel">登录</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="username" class="control-label">用户名:</label>
+                            <input type="text" class="form-control" id="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="control-label">密码:</label>
+                            <input type="password" class="form-control" id="password" autocomplete="off">
+                        </div>
+                        <div class="checkbox left">
+                            <label>
+                                <input type="checkbox" value="remember">
+                                一周内自动登录
+                            </label>
+                        </div>
+                        <div class="alert alert-danger" role="alert" hidden>密码错误</div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary">登录</button>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- 脚本分割线 -------------------------------------------------------------------------------------------->
     <script>
-        // 检测用户是否登录过
-        $(document).ready(function () {
-            // logout退出
-            $("#logout").click(function () {
-                $.get("src/login.php?action=logout", function (data, state) {
-                    console.log(data + '|' + state);
-                    if (state != "success") {
-                        $(location).attr('href', 'error.html');
-                    }
-                    if (data == "user_has_logout") {
-                        $(location).attr('href', 'login.html');
-                    }
-                });
-            });
+        var user = null;
 
-        });
+        // 让标题头可以点击
+        $('#my_tab a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+        // 显示login登录框
+        $('#login').click(function () {
+            $('#login_box').modal('show')
+        })
+        $('#login_box button').last().click(function () {
+            console.log("login")
+            $.ajax({
+                'url':'src/login.php',
+                'type':'POST',
+                'data':{
+                    'action':'login',
+                    'username':$('#username').val(),
+                    'password':hex_md5($('#password').val()),
+                    'remember': $(':checkbox:checked').val() ? "remember" : "n"
+                },
+                'success':function (data) {
+                    console.log(data)
+                }
+            })
+        })
+        // 显示修改密码框
+        $('#change_ps').click(function () {
+            $('#change_ps_box').modal('show')
+        })
+        // logout退出
+        $("#logout").click(function () {
+            $.get("src/login.php?action=logout", function (data, state) {
+                console.log(data + '|' + state)
+                if (state != "success") {
+                    $(location).attr('href', 'error.html')
+                }
+                if (data == "user_has_logout") {
+                    $(location).attr('href', 'login.html')
+                }
+            })
+        })
     </script>
 </body>
 
