@@ -29,7 +29,7 @@ if ( $_GET["action"] == "logout") {
 if ( $_POST["action"] == "login") {
     include_once 'sql_connect.php';
 
-    $sql = " SELECT `tb_dwxx`.`dw_name`, `tb_users`.`username`, `tb_users`.`power` FROM `tb_dwxx`  , `tb_users` WHERE `tb_users`.`username` = '" . $_POST["username"]  . "'";
+    $sql = " SELECT  `tb_users`.`uid`, `tb_users`.`username`, `tb_dwxx`.`dw_name`,`tb_users`.`power` FROM `tb_dwxx`  , `tb_users` WHERE `tb_users`.`username` = '" . $_POST["username"]  . "'";
     $qu = $db1->query($sql);
     $user = $qu->fetch(PDO::FETCH_ASSOC);
     $qu->closeCursor();
