@@ -67,12 +67,12 @@ if ( $_POST["action"] == "login") {
     }
 }
 
-echo json_encode(
-    'action'->$action,
-    'states'->$states,
-    'data'->json_encode(
-        'username'->$user['username'],
-        'dw_name'->$user['dw_name'],
-        'power'->$user['power']
-    )
-);
+echo json_encode(array(
+    'action'=>$action,
+    'states'=>$states,
+    'data'=>json_encode(array(
+        'username'=>$user['username'],
+        'dw_name'=>$user['dw_name'],
+        'power'=>$user['power']
+    ))
+));
