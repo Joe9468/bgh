@@ -151,7 +151,7 @@
                     'action': 'is_login'
                 },
                 'success': function (data) {
-                    request = data
+                    request = JSON.parse(data)
                     if (request['states'] == 5) {
                         user = JSON.parse(request['data'])
                         $('#login a').text(user['username'])
@@ -258,14 +258,13 @@
                     'action': 'change_ps',
                     'username': user['username'],
                     'now_password': user['password'],
-                    'new_password': hex_md5($('#password').val()),
+                    'new_password': hex_md5($('#new_password').val()),
                 },
                 'success': function (data) {
-                    console.log(data)
                     request = JSON.parse(data)
                     user = JSON.parse(request['data'])
-                    // alert('密码修改成功')
-                    $('#change_ps_box').hide()
+                    alert('密码修改成功')
+                    $('#change_ps_box').modal('hide')
                 }
             })
         })
