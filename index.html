@@ -133,6 +133,10 @@
     <script>
         var user = null;
 
+        function make_banner(user) {
+
+        }
+
         // 让标题头可以点击
         $('#my_tab a').click(function (e) {
             e.preventDefault()
@@ -151,6 +155,7 @@
                     if (request['states'] == 5) {
                         user = JSON.parse(request['data'])
                         $('#login a').text(user['username'])
+                        make_banner()
                         $('#change_ps').show()
                     }
                 }
@@ -203,6 +208,7 @@
                             user = JSON.parse(request['data'])
                             $('#login a').text(user['username'])
                             $('#change_ps').show()
+                            make_banner(user)
                             $('#login_box').modal('hide')
                     }
                 }
@@ -219,41 +225,47 @@
         })
         // 检查重复密码是否正确
         $('#now_password, #re_new_password, #new_password').change(function () {
-            if ($('#now_password').val() != user['password']) {
+            if (hex_md5($('#now_password').val()) != user['password']) {
                 $('#now_password').addClass("alert-danger")
-                $('#change_ps_box .alert').first().modal('show')
-            } else if ($("#new_password").val() != $('#re_new_password').val()) {
-                $('#re_new_password').addClass("alert-danger")
-                $('#change_ps_box .alert').last().modal('show')
-            } else {
-                $('#change_ps_box button').last().disabled = false
+                $('#change_ps_box .alert').first().show()
+                return
             }
+            $('#now_password').removeClass("alert-danger")
+            $('#change_ps_box .alert').first().hide()
+            if ($("#new_password").val() != $('#re_new_password').val() ) {
+                $('#re_new_password').addClass("alert-danger")
+                $('#change_ps_box .alert').last().show().text("密码不一致")
+                return
+            }
+            $('#re_new_password').removeClass("alert-danger")
+            $('#change_ps_box .alert').last().hide()
+            if ($("#new_password").val() == "" ) {
+                $('#new_password').addClass("alert-danger")
+                $('#change_ps_box .alert').last().show().text("密码不能为空")
+                return
+            }
+            $('#new_password').removeClass("alert-danger")
+            $('#change_ps_box .alert').last().hide()
+
+            $('#change_ps_box button').last().removeAttr("disabled")
         })
-        // 点击修改
+        // 点击修改密码
         $("#change_ps_box button").last().click(function () {
             $.ajax({
                 'url': 'src/login.php',
                 'type': 'POST',
                 'data': {
                     'action': 'change_ps',
+                    'username': user['username'],
+                    'now_password': user['password'],
                     'new_password': hex_md5($('#password').val()),
                 },
                 'success': function (data) {
                     console.log(data)
                     request = JSON.parse(data)
-                    switch (request['states']) {
-                        case 4:
-
-                            break
-                        case 3:
-
-                            break
-                        case 2:
-
-                            break
-                        case 1:
-
-                    }
+                    user = JSON.parse(request['data'])
+                    // alert('密码修改成功')
+                    $('#change_ps_box').hide()
                 }
             })
         })

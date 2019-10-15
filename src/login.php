@@ -42,8 +42,14 @@ if ($_GET["action"] == "logout") {
 
 if ($_POST['action'] == "change_ps") {
     include_once 'sql_connect.php';
-
-
+    session_start();
+    $sql = " UPDATE `tb_users` SET `password` = '" . $_POST['new_password'] . "' WHERE `tb_users`.`uid` = '" . $user[0] . "'";
+    $qu = $db1->query($sql);
+    $qu->closeCursor();
+    $_SESSION['password'] = $_POST['new_password'];
+    $user = $_SESSION;
+    $action = "password_has_changed";
+    $states = 7;
 }
 
 // 登录
