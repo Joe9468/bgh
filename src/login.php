@@ -1,7 +1,30 @@
 <?php
 
-if (empty($_POST) && $_GET["action"] == "logout") {
-    echo "user_has_logout";
+header('content-type:application/json;charset=utf-8');
+
+include_once 'sql_connect.php';
+session_start();
+
+$action = null;
+$states = null;
+$data = null;
+
+// 是否登录
+if ($_GET['action'] == 'is_login') {
+    if (isset($_SESSION["username"])) {
+        $action = 'has_login';
+        $states = 05;
+    } else {
+        $action = 'no_login';
+        $states = 06;
+    }
+}
+
+
+// 登出
+if ($_GET["action"] == "logout") {
+    $action = "user_has_logout";
+    $states = 00;
     $_SESSION = array();
     if (ini_get("session.use_cookies")) {
         $params = session_get_cookie_params();
@@ -15,48 +38,58 @@ if (empty($_POST) && $_GET["action"] == "logout") {
             $params["httponly"]
         );
     }
-    exit;
 }
 
-include_once 'sql_connect.php';
-
-$sql = " SELECT * FROM `tb_users` WHERE `username` =  '" . $_POST["username"]  . "'";
-$qu = $db1->query($sql);
-$user = $qu->fetch(PDO::FETCH_ASSOC);
-$qu->closeCursor();
-
-// 验证是否有用户
-if (!is_array($user)) {
-    echo 'not_has_the_user';
-    exit;
-}
-
-// 验证是否锁定
-if ($user["ps_times"] >= 3) {
-    echo "user_is_lock";
-    exit;
-}
-
-// 验证密码错误
-if ($user["password"] != $_POST["password"]) {
-    $times = $user["ps_times"] + 1;
-    $sql = " UPDATE `tb_users` SET `ps_times` = '" . $times . "' WHERE `tb_users`.`uid` = '" . $user[0] . "'";
+// 修改密码
+if ($_POST['action'] == "change_ps") {
+    $sql = " UPDATE `tb_users` SET `password` = '" . $_POST["new_password"] . "' WHERE `tb_users`.`uid` = " . $_SESSION["uid"] ;
     $qu = $db1->query($sql);
     $qu->closeCursor();
-    echo 'password_is_wrong';
-    exit;
+    $_SESSION['password'] = $_POST['new_password'];
+    $action = "password_has_changed";
+    $states = 7;
 }
 
-// 验证是否长时间记录
-if ($_POST["remember"] = "remember") {
-    session_set_cookie_params(604800);
+// 登录
+if ($_POST["action"] == "login") {
+    $sql = " SELECT  `tb_users`.*, `tb_dwxx`.`dw_name` FROM `tb_dwxx`  , `tb_users` WHERE `tb_users`.`username` = '" . $_POST["username"]  . "'";
+    $qu = $db1->query($sql);
+    $_SESSION = $qu->fetch(PDO::FETCH_ASSOC);
+    $qu->closeCursor();
+
+    if (!is_array($_SESSION)) {
+        // 验证是否有用户
+        $action = 'not_has_the_user';
+        $states = 04;
+    } elseif ($_SESSION["ps_times"] >= 3) {
+        // 验证是否锁定
+        $action = "user_is_lock";
+        $states = 03;
+    } elseif ($_SESSION["password"] != $_POST["password"]) {
+        // 验证密码错误
+        $_SESSION["ps_times"]  = +1;
+        $sql = " UPDATE `tb_users` SET `ps_times` = " . $_SESSION['ps_times'] . " WHERE `tb_users`.`uid` = " . $_SESSION['uid'];
+        $qu = $db1->query($sql);
+        $qu->closeCursor();
+        $action = 'password_is_wrong';
+        $states = 02;
+        $_SESSION = array();
+    } else {
+        if ($_POST["remember"] == "remember") {
+            // 验证是否长时间记录
+            session_set_cookie_params(604800);
+        }
+        // 登录成功
+        $sql = " UPDATE `tb_users` SET `ps_times` = 0 WHERE `tb_users`.`uid` = " . $_SESSION['uid'];
+        $qu = $db1->query($sql);
+        $qu->closeCursor();
+        $action = 'login_sussed';
+        $states = 01;
+    }
 }
 
-// 登录成功
-$times = 0;
-$sql = " UPDATE `tb_users` SET `ps_times` = '" . $times . "' WHERE `tb_users`.`uid` = '" . $user[0] . "'";
-$qu = $db1->query($sql);
-$qu->closeCursor();
-session_start();
-$_SESSION = $user;
-echo 'login_sussed';
+echo json_encode(array(
+    'action' => $action,
+    'states' => $states,
+    'data' => json_encode($_SESSION)
+));
