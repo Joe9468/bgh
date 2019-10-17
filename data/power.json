@@ -2,55 +2,55 @@
     "main": {
         "xm_name": "主页",
         "url": "main.html",
-        "power": 0
+        "power": 1
     },
     "sykz": {
         "xm_name": "财务信息",
         "url": "",
-        "power": 6,
+        "power": 12,
         "children": {
-            "yltj": {
+            "jfkz": {
                 "xm_name": "上月经费开支",
                 "url": "jfkz.html",
-                "power": 2
+                "power": 4
             },
             "dxkz": {
                 "xm_name": "下月大项计划",
                 "url": "dxkz.html",
-                "power": 4
+                "power": 8
             }
         }
     },
     "ylxx" :{
         "xm_name": "油料信息",
         "url": "",
-        "power": 24,
+        "power": 48,
         "children": {
             "yltj": {
                 "xm_name": "油料统计",
                 "url": "ultj.html",
-                "power": 8
+                "power": 16
             },
             "yljh": {
                 "xm_name": "油料计划",
                 "url": "yljh.html",
-                "power": 16
+                "power": 32
             }
         }
     },
     "clwx": {
         "xm_name": "车辆维修",
         "url": "clwx.html",
-        "power": 32
+        "power": 64
     },
     "bgh_sjhz": {
         "xm_name": "办公会数据汇总",
         "url": "bgh_sjhz.html",
-        "power": 1
+        "power": 2
     },
     "admin": {
         "xm_name": "系统管理",
         "url": "admin.html",
-        "power": 1
+        "power": 2
     }
 }
