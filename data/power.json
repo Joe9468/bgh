@@ -11,12 +11,12 @@
         "children": {
             "jfkz": {
                 "xm_name": "上月经费开支",
-                "url": "jfkz.html",
+                "url": "bgh_html/jfkz.html",
                 "power": 4
             },
             "dxkz": {
                 "xm_name": "下月大项计划",
-                "url": "dxkz.html",
+                "url": "bgh_html/dxkz.html",
                 "power": 8
             }
         }
@@ -28,24 +28,24 @@
         "children": {
             "yltj": {
                 "xm_name": "油料统计",
-                "url": "ultj.html",
+                "url": "bgh_html/yltj.html",
                 "power": 16
             },
             "yljh": {
                 "xm_name": "油料计划",
-                "url": "yljh.html",
+                "url": "bgh_html/yljh.html",
                 "power": 32
             }
         }
     },
     "clwx": {
         "xm_name": "车辆维修",
-        "url": "clwx.html",
+        "url": "bgh_html/clwx.html",
         "power": 64
     },
-    "bgh_sjhz": {
+    "sjhz": {
         "xm_name": "办公会数据汇总",
-        "url": "bgh_sjhz.html",
+        "url": "bgh_html/sjhz.html",
         "power": 2
     },
     "admin": {

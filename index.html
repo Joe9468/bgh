@@ -14,9 +14,12 @@
             padding-top: 50px;
         }
 
-        .starter {
-            padding: 10px 15px;
+        .body_content{
             text-align: center;
+        }
+
+        .welcome {
+            padding: 5px 15px;
         }
     </style>
 </head>
@@ -42,8 +45,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li id="login" class="hidden-sm"><a href="#">登录</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
-                                class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li id="change_ps" hidden><a href="#">修改密码</a> </li>
                             <li id="logout"><a href="#">退　　出</a> </li>
@@ -55,40 +57,41 @@
     </nav>
 
     <!-- 内容 -->
-    <div class="container">
-        <div class="starter">
-            <div class="tab-content">
-                <div class="tab-pane active" id="welcome">
+    <div class="body_content">
+        <div class="tab-content">
+            <div class="tab-pane active" id="welcome">
+                <div class="container welcome">
                     <h1>欢迎来到办公会数据统计系统</h1>
                     <p class="lead">这里是CFJFQ保障处建立的用于统计和形成办公会材料的网站，它将一步步完成并投入运营</p>
                 </div>
-                <div class="tab-pane" id="main">
-                    <p>主页</p>
-                </div>
-                <div class="tab-pane" id="jfkz">
-                    <p>上月经费开支</p>
-                </div>
-                <div class="tab-pane" id="dxkz">
-                    <p>下月大项开支计划</p>
-                </div>
-                <div class="tab-pane" id="yltj">
-                    <p>本月油料统计</p>
-                </div>
-                <div class="tab-pane" id="yljh">
-                    <p>下月油料计划</p>
-                </div>
-                <div class="tab-pane" id="clwx">
-                    <p>车辆维修</p>
-                </div>
-                <div class="tab-pane" id="bgh_sjhz">
-                    <p>办公会数据汇总</p>
-                </div>
-                <div class="tab-pane" id="admin">
-                    <p>系统管理</p>
-                </div>
+            </div>
+            <div class="tab-pane" id="main">
+                <p>主页</p>
+            </div>
+            <div class="tab-pane" id="jfkz">
+                <p>上月经费开支</p>
+            </div>
+            <div class="tab-pane" id="dxkz">
+                <p>下月大项开支计划</p>
+            </div>
+            <div class="tab-pane" id="yltj">
+                <p>本月油料统计</p>
+            </div>
+            <div class="tab-pane" id="yljh">
+                <p>下月油料计划</p>
+            </div>
+            <div class="tab-pane" id="clwx">
+                <p>车辆维修</p>
+            </div>
+            <div class="tab-pane" id="sjhz">
+                <p>办公会数据汇总</p>
+            </div>
+            <div class="tab-pane" id="admin">
+                <p>系统管理</p>
             </div>
         </div>
     </div>
+
 
     <!--change_ps_box Modal -->
     <div class="modal fade" id="change_ps_box" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
