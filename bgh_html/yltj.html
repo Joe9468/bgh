@@ -3,29 +3,133 @@
 
 <head lang="zh-cn">
     <title>油料统计</title>
-    <!-- <meta charset="utf-8">
+<!-- 
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="./bootstrap-3.3.7-dist/css/bootstrap.min.css"> -->
-
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="../js/jquery-1.12.4.min.js"> </script>
+    <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+ -->
 </head>
 
 <body>
-    <div class="yltj">
-        <div style="background-color: dodgerblue; color: white; height: 140px; padding: 5px 0px;">
-            <h1>油料统计</h1>
-            <p>统计本月油料数据</p>
+    <div class="yltj container">
+        <div class="page-header">
+            <h1>本月油料使用情况统计</h1>
+            <p>油料的使用一定要保持常态关注，每名油料管理人员都要严防死守“跑冒滴漏”现象，让每一滴油料都用到国防建设中去。<br>
+                同时严格要求自己，杜绝侥幸心理，防止出现“找后账”。</p>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9" style="background-color: red;">
-                    <p>这里是第一格</p>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="background-color: green;">
-                    <p>这里是第二格</p>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">填报本月油料使用情况</h3>
+                    </div>
+                    <div class="panel-body">
+                        <!-- 临时存放 -->
+                        <div class="panel">
+
+                        </div>
+                        <!-- 内容添加 -->
+                        <div class="panel panel-default">
+                            <div class="panel-body row">
+                                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                                    <label for="basic-url">车辆牌照或型号</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-default dropdown-toggle"
+                                                data-toggle="dropdown">常用车牌 <span class="caret"></span></button>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="#">Action</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                                    <label for="basic-url">加油次数</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-default"> <span
+                                                    class="glyphicon glyphicon-plus"></span></button>
+                                            <button type="button" class="btn btn-default"> <span
+                                                    class="glyphicon glyphicon-minus"></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                                    <label for="basic-url">加油方式</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-default dropdown-toggle"
+                                                data-toggle="dropdown">加油方式 <span class="caret"></span></button>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="#">油料卡加油</a></li>
+                                                <li><a href="#">实物油加油</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                                    <label for="basic-url">加油卡号</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-default dropdown-toggle"
+                                                data-toggle="dropdown">常用卡号 <span class="caret"></span></button>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="#">卡1</a></li>
+                                                <li><a href="#">卡2</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                                    <label for="basic-url">加油卡消费金额</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                                    <label for="basic-url">实物油消耗</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="panel-footer">
+                                <button type="button" class="btn btn-default">button</button>
+                                <button type="button" class="btn btn-default">button</button>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
+
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">过去3个月油料使用情况</h3>
+                    </div>
+                    <div class="panel-body">
+                        Panel content
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </body>
