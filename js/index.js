@@ -49,6 +49,7 @@ $('#my_tab a').click(function (e) {
     e.preventDefault()
     $(this).tab('show')
 })
+
 // 检查是否登录
 $(document).ready(function () {
     $.ajax({
@@ -68,11 +69,13 @@ $(document).ready(function () {
         }
     })
 })
+
 // 恢复box中的设置
 $('#username, #password').change(function () {
     $(this).removeClass('alert-danger')
     $(('.alert.alert-danger')).hide()
 })
+
 // 显示login登录框
 $('#login').click(function () {
     if ($(this).text() == '登录') {
@@ -82,6 +85,7 @@ $('#login').click(function () {
         $('#login_box').modal('show')
     }
 })
+
 // 点击登录
 $('#login_box button').last().click(function () {
     $.ajax({
@@ -121,6 +125,7 @@ $('#login_box button').last().click(function () {
         }
     })
 })
+
 // 显示修改密码框
 $('#change_ps').click(function () {
     $('#now_password').val('').removeClass('alert-danger')
@@ -130,7 +135,8 @@ $('#change_ps').click(function () {
     $('#change_ps_box button').disabled = true
     $('#change_ps_box').modal('show')
 })
-// 检查重复密码是否正确
+
+// 检查修改密码框
 $('#now_password, #re_new_password, #new_password').change(function () {
     if (hex_md5($('#now_password').val()) != user['password']) {
         $('#now_password').addClass("alert-danger")
@@ -156,6 +162,7 @@ $('#now_password, #re_new_password, #new_password').change(function () {
 
     $('#change_ps_box button').last().removeAttr("disabled")
 })
+
 // 点击修改密码
 $("#change_ps_box button").last().click(function () {
     $.ajax({
@@ -175,6 +182,7 @@ $("#change_ps_box button").last().click(function () {
         }
     })
 })
+
 // logout退出
 $("#logout").click(function () {
     $.ajax({
