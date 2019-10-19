@@ -1,4 +1,5 @@
 var user = null;
+var user_url = {};
 
 // 构建页面结构
 function make_banner(user) {
@@ -17,7 +18,7 @@ function make_banner(user) {
                 if (field["children"] == null && (field["power"] & user["power"]) > 0) {
                     li_html = "<li><a href = \"#" + i + "\" data-toggle = \"tab\">" + field[
                         "xm_name"] + "</a></li>"
-                    $("#" + i).load(field['url'])
+                    user_url[i] = field['url']
                 } else if ((field["power"] & user["power"]) > 0) {
                     li_html =
                         "<li class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=>" +
@@ -29,26 +30,27 @@ function make_banner(user) {
                             li_html += "<li><a href = \"#" + j +
                                 "\" data-toggle = \"tab\">" + children_li_a["xm_name"] +
                                 "</a></li>"
-                            $("#" + j).load(children_li_a['url'])
+                            user_url[j] = children_li_a['url']
                         }
                     })
                     li_html += "</ul>"
                 }
                 $("#my_tab").append(li_html)
                 $('#my_tab a:first').tab('show')
+                // 让标题头可以点击
                 $('#my_tab a').click(function (e) {
                     e.preventDefault()
                     $(this).tab('show')
+                    $($(this).attr("href")).load(user_url[$(this).attr("href").substring(1)])
+                })
+                $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                    console.log(e.target) // newly activated tab
+                    console.log(e.relatedTarget) // previous active tab
                 })
             })
         })
 }
 
-// 让标题头可以点击
-$('#my_tab a').click(function (e) {
-    e.preventDefault()
-    $(this).tab('show')
-})
 
 // 检查是否登录
 $(document).ready(function () {
