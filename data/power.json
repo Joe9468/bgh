@@ -21,27 +21,15 @@
             }
         }
     },
-    "ylxx" :{
-        "xm_name": "油料信息",
-        "url": "",
-        "power": 48,
-        "children": {
-            "yltj": {
-                "xm_name": "油料统计",
-                "url": "bgh_html/yltj.html",
-                "power": 16
-            },
-            "yljh": {
-                "xm_name": "油料计划",
-                "url": "bgh_html/yljh.html",
-                "power": 32
-            }
-        }
+    "yltj": {
+        "xm_name": "油料统计",
+        "url": "bgh_html/yltj.html",
+        "power": 16
     },
     "clwx": {
         "xm_name": "车辆维修",
         "url": "bgh_html/clwx.html",
-        "power": 64
+        "power": 32
     },
     "sjhz": {
         "xm_name": "办公会数据汇总",

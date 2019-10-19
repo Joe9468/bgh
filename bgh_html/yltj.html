@@ -9,9 +9,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <script src="../js/jquery-1.12.4.min.js"> </script>
-    <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
  -->
+
 </head>
 
 <body>
@@ -23,115 +22,145 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                <div class="panel panel-success">
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                <div class="panel panel-success" id="yl_search">
                     <div class="panel-heading">
-                        <h3 class="panel-title">填报本月油料使用情况</h3>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+                                <h3 class="panel-title" style="font-size: 20px;">填报本月油料使用情况</h3>
+                            </div>
+                            <div class=" hidden-xs col-sm-3 col-md-2 col-lg-2">
+                                <div class="btn-group btn-group-xs">
+                                    <button type="button" class="btn btn-success  dropdown-toggle"
+                                        data-toggle="dropdown">
+                                        2019年10月 <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a href="#">2019年11月</a></li>
+                                        <li><a href="#">2019年12月</a></li>
+                                        <li><a href="#">2020年01月</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="panel-body">
-                        <!-- 临时存放 -->
-                        <div class="panel">
-
-                        </div>
-                        <!-- 内容添加 -->
-                        <div class="panel panel-default">
-                            <div class="panel-body row">
-                                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                                    <label for="basic-url">车辆牌照或型号</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control">
-                                        <div class="input-group-btn">
-                                            <button type="button" class="btn btn-default dropdown-toggle"
-                                                data-toggle="dropdown">常用车牌 <span class="caret"></span></button>
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="#">Action</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                                    <label for="basic-url">加油次数</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control">
-                                        <div class="input-group-btn">
-                                            <button type="button" class="btn btn-default"> <span
-                                                    class="glyphicon glyphicon-plus"></span></button>
-                                            <button type="button" class="btn btn-default"> <span
-                                                    class="glyphicon glyphicon-minus"></span></button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                                    <label for="basic-url">加油方式</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control">
-                                        <div class="input-group-btn">
-                                            <button type="button" class="btn btn-default dropdown-toggle"
-                                                data-toggle="dropdown">加油方式 <span class="caret"></span></button>
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="#">油料卡加油</a></li>
-                                                <li><a href="#">实物油加油</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                                    <label for="basic-url">加油卡号</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control">
-                                        <div class="input-group-btn">
-                                            <button type="button" class="btn btn-default dropdown-toggle"
-                                                data-toggle="dropdown">常用卡号 <span class="caret"></span></button>
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="#">卡1</a></li>
-                                                <li><a href="#">卡2</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                                    <label for="basic-url">加油卡消费金额</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                                    <label for="basic-url">实物油消耗</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="panel-footer">
-                                <button type="button" class="btn btn-default">button</button>
-                                <button type="button" class="btn btn-default">button</button>
-                            </div>
-                        </div>
-
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center;">单　位</th>
+                                    <th style="text-align: center;">车辆牌照</th>
+                                    <th style="text-align: center;">次数</th>
+                                    <th style="text-align: center;">加油方式</th>
+                                    <th style="text-align: center;">加油卡卡号</th>
+                                    <th style="text-align: center;">加油卡金额</th>
+                                    <th style="text-align: center;">实物油升数</th>
+                                    <th style="text-align: center;">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: center;">分区</td>
+                                    <td style="text-align: center;">SB11401</td>
+                                    <td style="text-align: center;">2</td>
+                                    <td style="text-align: center;">加油卡</td>
+                                    <td style="text-align: center;">8403</td>
+                                    <td style="text-align: right;">1123.45</td>
+                                    <td style="text-align: right;">0</td>
+                                    <td style="text-align: center;"><button type="button"
+                                            class="btn btn-xs btn-danger">删除</button></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;">阿旗</td>
+                                    <td style="text-align: center;">无牌猎豹</td>
+                                    <td style="text-align: center;">2</td>
+                                    <td style="text-align: center;">加油卡</td>
+                                    <td style="text-align: center;">8403</td>
+                                    <td style="text-align: right;">1123.45</td>
+                                    <td style="text-align: right;">0</td>
+                                    <td style="text-align: center;"><button type="button"
+                                            class="btn btn-xs btn-danger">删除</button></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;">元宝山</td>
+                                    <td style="text-align: center;">SB11401</td>
+                                    <td style="text-align: center;">2</td>
+                                    <td style="text-align: center;">实物油</td>
+                                    <td style="text-align: center;">-</td>
+                                    <td style="text-align: right;">0</td>
+                                    <td style="text-align: right;">123.24</td>
+                                    <td style="text-align: center;"><button type="button"
+                                            class="btn btn-xs btn-danger">删除</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div class="panel panel-default">
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="panel panel-default" id="yl_cell_add">
                     <div class="panel-heading">
-                        <h3 class="panel-title">过去3个月油料使用情况</h3>
+                        <h3 class="panel-title">添加项目</h3>
                     </div>
                     <div class="panel-body">
-                        Panel content
+                        <div class="input-group input-group-sm" id="car_card">
+                            <label for="car_card" class="input-group-addon">车 辆 牌 照 / 型 号</label>
+                            <input type="text" class="form-control  dropdown-toggle" data-toggle="dropdown"
+                                placeholder="无牌勇士/SB114XX">
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <!-- <li><a href="#">8504</a></li> -->
+                            </ul>
+                        </div>
+                        <div class="input-group input-group-sm" id="jy_times">
+                            <label for="jy_times" class="input-group-addon">加 　油　 次 　数</label>
+                            <input type="number" class="form-control" value="1">
+                        </div>
+                        <div class="input-group input-group-sm" id="jy_type">
+                            <label for="jy_type" class="input-group-addon">加 　油 　方 　式</label>
+                            <input type="text" class="form-control disabled" value="加油卡">
+                            <a class="input-group-addon  dropdown-toggle" data-toggle="dropdown"><span
+                                    class="caret"></span></a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="#">实物油</a></li>
+                                <li><a href="#">加油卡</a></li>
+                            </ul>
+                        </div>
+                        <div class="input-group input-group-sm" id="jy_card">
+                            <label for="jy_card" class="input-group-addon">加 　油 　卡　 号</label>
+                            <input type="text" class="form-control  dropdown-toggle" data-toggle="dropdown">
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <!-- <li><a href="#">8504</a></li> -->
+                            </ul>
+                        </div>
+                        <div class="input-group input-group-sm" id="jy_card_je">
+                            <label for="jy_card_je" class="input-group-addon">油卡消费金额(￥)</label>
+                            <input type="text" class="form-control" placeholder="0.00">
+                        </div>
+                        <div class="input-group input-group-sm" id="jy_sw">
+                            <label for="jy_sw" class="input-group-addon">实物油料消耗( L )</label>
+                            <input type="text" class="form-control" placeholder="0.00">
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default">添加</button>
+                        </div>
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
+
+    <!-- 脚本分割线 ----->
+<!-- 
+    <script src="../js/md5.js"></script>
+    <script src="../js/jquery-1.12.4.min.js"> </script>
+    <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+     -->
+    <script src="js/yltj.js"></script>
+
 </body>
 
 </html>
