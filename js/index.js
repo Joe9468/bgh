@@ -36,17 +36,17 @@ function make_banner(user) {
                     li_html += "</ul>"
                 }
                 $("#my_tab").append(li_html)
-                $('#my_tab a:first').tab('show')
-                // 让标题头可以点击
-                $('#my_tab a').click(function (e) {
-                    e.preventDefault()
-                    $(this).tab('show')
-                    $($(this).attr("href")).load(user_url[$(this).attr("href").substring(1)])
-                })
-                $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                    console.log(e.target) // newly activated tab
-                    console.log(e.relatedTarget) // previous active tab
-                })
+            })
+            $('#my_tab a:first').tab('show')
+            // 让标题头可以点击
+            $('#my_tab a').click(function (e) {
+                e.preventDefault()
+                $(this).tab('show')
+            })
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                // 这里有个同步警号，没看懂，没理解，他和上面的$(this).tab('show)好像有冲突
+                $($(e.target).attr('href')).load(user_url[$(e.target).attr("href").substring(1)])
+                $($(e.relatedTarget).attr("href")).html("")
             })
         })
 }
