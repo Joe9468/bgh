@@ -5,7 +5,6 @@ var user_url = {};
 function make_banner(user) {
     $("#my_tab").empty()
     if (user == null || user['power'] == 0) {
-        console.log()
         $("#my_tab").append("<li class=\"hide\"><a href=\"#welcome\" data-toggle = \"tab\">欢迎</a></li>")
         $("#my_tab a:last").tab('show')
         return
@@ -50,7 +49,6 @@ function make_banner(user) {
             })
         })
 }
-
 
 // 检查是否登录
 $(document).ready(function () {

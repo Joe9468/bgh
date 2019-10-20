@@ -30,22 +30,20 @@
                                 <h3 class="panel-title" style="font-size: 20px;">填报本月油料使用情况</h3>
                             </div>
                             <div class=" hidden-xs col-sm-3 col-md-2 col-lg-2">
-                                <div class="btn-group btn-group-xs">
+                                <div class="btn-group btn-group-xs" id="yl_month">
                                     <button type="button" class="btn btn-success  dropdown-toggle"
                                         data-toggle="dropdown">
                                         2019年10月 <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="#">2019年11月</a></li>
-                                        <li><a href="#">2019年12月</a></li>
-                                        <li><a href="#">2020年01月</a></li>
+                                        <!-- <li><a href="#">2019年11月</a></li> -->
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="panel-body">
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="yl_list">
                             <thead>
                                 <tr>
                                     <th style="text-align: center;">单　位</th>
@@ -109,7 +107,7 @@
                             <input type="text" class="form-control  dropdown-toggle" data-toggle="dropdown"
                                 placeholder="无牌勇士/SB114XX">
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <!-- <li><a href="#">8504</a></li> -->
+                                <!-- <li><a href="#">SB114XX</a></li> -->
                             </ul>
                         </div>
                         <div class="input-group input-group-sm" id="jy_times">
@@ -118,7 +116,7 @@
                         </div>
                         <div class="input-group input-group-sm" id="jy_type">
                             <label for="jy_type" class="input-group-addon">加 　油 　方 　式</label>
-                            <input type="text" class="form-control disabled" value="加油卡">
+                            <input type="text" class="form-control disabled" value="加油卡" disabled>
                             <a class="input-group-addon  dropdown-toggle" data-toggle="dropdown"><span
                                     class="caret"></span></a>
                             <ul class="dropdown-menu dropdown-menu-right">
@@ -137,7 +135,7 @@
                             <label for="jy_card_je" class="input-group-addon">油卡消费金额(￥)</label>
                             <input type="text" class="form-control" placeholder="0.00">
                         </div>
-                        <div class="input-group input-group-sm" id="jy_sw">
+                        <div class="input-group input-group-sm hidden" id="jy_sw">
                             <label for="jy_sw" class="input-group-addon">实物油料消耗( L )</label>
                             <input type="text" class="form-control" placeholder="0.00">
                         </div>
